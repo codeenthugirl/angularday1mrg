@@ -1,0 +1,34 @@
+
+  <h1 *ngIf="cart.length<=0"> Your cart is empty </h1>
+<div *ngIf=" cart.length>0">
+<h1> Your cart </h1>
+<div *ngFor="let c of cart;let i of index">
+  <ul>
+    <li>{{c}} <button (click)="deleteitem(i)">Delete</button></li>
+  </ul>
+</div>
+</div>
+<form (ngSubmit)="Addmodel(form)" #form="ngForm">
+  <table>
+    <tr>
+      <td>ProductID :</td>
+      <td><input type="number" name="prodId" ngModel></td>
+    </tr>
+    <tr>
+      <td>URL :</td>
+      <td><input type="text" name="pictureurl" ngModel></td>
+    </tr>
+    <tr>
+      <td>Comments :</td>
+      <td><input type="text" name="comment" ngModel></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button type="submit">Add</button></td>
+    </tr>
+  </table>
+  </form>
+
+<div *ngFor= "let p of pictures">
+<app-pictures [picture]= "p" (itemSelected)="addtoCart($event)" > </app-pictures> 
+</div>
